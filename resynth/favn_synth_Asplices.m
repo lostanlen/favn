@@ -3,7 +3,8 @@ folder = 'A';
 
 splice_index = 1;
 
-N = 2^16;
+N = 2^20; % length of the signal
+
 
 % Load target waveform
 prefix = ['F_Tele_FAVN_03_', folder, '_splice'];
@@ -12,7 +13,7 @@ file_str = [prefix, splice_str, '.wav'];
 path_str = fullfile(folder, file_str);
 [splice, sample_rate] = eca_load(path_str, N);
 
-%
+%%
 target_waveform = planck_taper(N) .* splice;
 
 %
@@ -20,9 +21,8 @@ Q1 = 12; % number of filters per octave at first order
 T = 2^13; % amount of invariance with respect to time translation
 % The modulation setting is either 'none', 'time', or 'time-frequency'
 % The wavelets setting is either 'morlet' or 'gammatone'
-modulations = 'none';
+modulations = 'time-frequency';
 wavelets = 'morlet';
-N = 2^16; % length of the signal
 
 % Setup reconstruction options
 clear opts;
