@@ -8,7 +8,7 @@ prefix = ['F_Tele_FAVN_03_', folder, '_splice'];
 splice_str = sprintf('%0.2d', splice_index);
 file_str = [prefix, splice_str, '.wav'];
 path_str = fullfile(folder, file_str);
-[y, sample_rate] = eca_load(path_str, N);
+[splice, sample_rate] = eca_load(path_str, N);
 
 %
 y = planck_taper(N) .* splice;
