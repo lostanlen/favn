@@ -5,7 +5,6 @@ splice_index = 1;
 
 N = 2^20; % length of the signal
 
-
 % Load target waveform
 prefix = ['F_Tele_FAVN_03_', folder, '_splice'];
 splice_str = sprintf('%0.2d', splice_index);
