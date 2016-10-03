@@ -69,9 +69,9 @@ while (iteration <= opts.nIterations)
     export_path_str = fullfile(folder, export_file_str);
     audiowrite(export_path_str, iterations{1+iteration}, sample_rate, ...
         'BitsPerSample', bit_depth);
-    system(['git add ', export_path_str]);
-    system(['git commit -m "Upload ', export_file_str, '"']);
-    system('git push');
+    %system(['git add ', export_path_str]);
+    %system(['git commit -m "Upload ', export_file_str, '"']);
+    %system('git push');
     
     
     %% Scattering propagation
