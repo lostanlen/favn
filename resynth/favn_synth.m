@@ -1,6 +1,4 @@
-folder = 'A';
-splice_index = 1;
-
+function favn_synth(folder, splice_index)
 N = 2^20; % length of the signal
 
 % Load target waveform
@@ -70,10 +68,11 @@ while (iteration <= opts.nIterations)
         '.wav'];
     export_path_str = fullfile(folder, export_file_str);
     audiowrite(export_path_str, iterations{1+iteration}, sample_rate, ...
-        'BitsPerSample', bit_rate);
+        'BitsPerSample', bit_depth);
     system(['git add ', export_path_str]);
     system(['git commit -m "Upload ', export_file_str, '"']);
     system('git push');
+    
     
     %% Scattering propagation
     S = cell(1, nLayers);
@@ -150,3 +149,4 @@ while (iteration <= opts.nIterations)
     end
 end
 toc();
+end
