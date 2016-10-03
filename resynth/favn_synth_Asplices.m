@@ -8,7 +8,7 @@ prefix = ['F_Tele_FAVN_03_', folder, '_splice'];
 splice_str = sprintf('%0.2d', splice_index);
 file_str = [prefix, splice_str, '.wav'];
 path_str = fullfile(folder, file_str);
-[splice, sample_rate] = eca_load(path_str, N);
+[splice, sample_rate, bit_depth] = eca_load(path_str, N);
 
 %
 y = planck_taper(N) .* splice;
@@ -69,7 +69,8 @@ while (iteration <= opts.nIterations)
         sprintf('%0.2d', iteration), ...
         '.wav'];
     export_path_str = fullfile(folder, export_file_str);
-    audiowrite(export_path_str, iterations{1+iteration}, sample_rate);
+    audiowrite(export_path_str, iterations{1+iteration}, sample_rate, ...
+        'BitsPerSample', bit_rate);
     system(['git add ', export_path_str]);
     system(['git commit -m "Upload ', export_file_str, '"']);
     system('git push');
@@ -100,7 +101,7 @@ while (iteration <= opts.nIterations)
     delta_S = sc_substract(target_S,S);
     
     %% If loss has increased, step retraction and bold driver "brake"
-    [loss,layer_absolute_distances] = sc_norm(delta_S);
+    [loss, layer_absolute_distances] = sc_norm(delta_S);
     if opts.adapt_learning_rate && (loss > previous_loss)
         learning_rate = ...
             opts.bold_driver_brake * learning_rate;
