@@ -19,7 +19,7 @@ T = 2^13; % amount of invariance with respect to time translation
 % The modulation setting is either 'none', 'time', or 'time-frequency'
 % The wavelets setting is either 'morlet' or 'gammatone'
 modulations = 'time-frequency';
-wavelets = 'morlet';
+wavelets = 'gammatone';
 
 % Setup reconstruction options
 clear opts;
