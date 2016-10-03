@@ -28,7 +28,7 @@ opts.is_spectrogram_displayed = false;
 % (close Figure 1 to abort early)
 opts.nIterations = 50;
 opts.sample_rate = sample_rate;
-opts.generate_text = false;
+opts.generate_text = true;
 opts.is_verbose = true;
 opts.initial_learning_rate = 0.1;
 
